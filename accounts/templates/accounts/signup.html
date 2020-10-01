@@ -5,10 +5,10 @@
 </head>
 <body>
 <h1>Sign Up</h1>
-<form class="site-form" action="accounts/signup.html" method="POST">
+<form class="site-form" action="{% url 'account:signup' %}" method="POST">
     {{form}}
     {% csrf_token %}
-    <input type="submit"  value="submit">
+    <input type="submit"  value="signup">
 </form>
 </body>
 </html>
