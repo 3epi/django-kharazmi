@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+<title>SignUp</title>
+{% block content %}
 <h1>Sign Up</h1>
 <form class="site-form" action="{% url 'accounts:signup' %}" method="POST">
     {{form}}
     {% csrf_token %}
     <input type="submit"  value="signup">
 </form>
-</body>
-</html>
+{% endblock %}
