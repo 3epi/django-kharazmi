@@ -9,15 +9,28 @@
     <div class="wrapper"> 
      <nav>
         <ul>
-          <li>
-            <form class="logout-link" action="{% url 'accounts:logout' %}" >
-            {% csrf_token %}
-            <button type="submit">logout</button>
-            </form>
-          </li>
+          {% if user.is_authenticated %}
+            <li>
+              <form class="logout-link" action="{% url 'accounts:logout' %}" >
+              {% csrf_token %}
+              <button type="submit">logout</button>
+              </form>
+            </li>
+            <li>
+              <a href="{% url 'panel:panel' %}">MyPanel</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="{% url 'accounts:login' %}">Login</a>
+            </li>
+            <li>
+              <a href="{% url 'accounts:login' %}">SignUp</a>
+            </li>
+          {% endif %}
         </ul>
      </nav>
     {% block content %}
+    
     {% endblock %}
     </div>
   </body>
