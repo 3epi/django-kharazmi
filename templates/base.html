@@ -6,7 +6,7 @@
      <link rel="stylesheet" href="{% static 'styles.css' %}">
   </head>
   <body>
-    <div class="wrapper"> 
+<header>
      <nav>
         <ul>
           {% if user.is_authenticated %}
@@ -29,9 +29,11 @@
           {% endif %}
         </ul>
      </nav>
+</header>
+  <div class="wrapper"> 
     {% block content %}
     
     {% endblock %}
-    </div>
+  </div>
   </body>
 </html>

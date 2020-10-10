@@ -7,10 +7,11 @@ def signup_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('urls:login')
+        return redirect("accounts:login")
     else : 
         form = UserCreationForm()
-    return render(request, 'accounts/signup.html', {'form':form})
+        return render(request, 'accounts/signup.html', {'form':form})
+    return redirect('accounts:login')
 def login_view(request):
     if request.method== "POST" : 
         form = AuthenticationForm(data=request.POST)
