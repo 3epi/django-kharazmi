@@ -103,6 +103,15 @@ a.highlight {
     margin: 10px 0;
 }
 
+.site-form input {
+    border: 0;
+    color: #00dba0;
+    font-size: 1.2em;
+    background: #fff;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
 .switch {
     margin-top: 5px;
     position: relative;
