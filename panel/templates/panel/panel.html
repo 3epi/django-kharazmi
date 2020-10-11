@@ -1,4 +1,5 @@
-{% load static %}
+{% extends 'base.html' %} 
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,117 +7,52 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>Panel</title>
-    <style>
-      *{
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-      body{
-        background: black;
-      }
-      .row{
-        background: gray;
-        border-radius: 30px;
-        box-shadow: 12px 12px 22px white;
-      }
-      .btn1{
-          border : none;
-          outline: none;
-          height: 35px;
-          width: 150px;
-          background-color: rgb(100,226,150);
-          color: rgb(200,226,226);
-          border-radius: 4px;
-          font-weight: bold;  
-      }
-      .btn1:hover{
-        background: black;
-        border: 1px solid;
-        color : white;
-      }
-    </style>
-  </head>
-  <header>
-       <nav>
-        <ul>
-          {% if user.is_authenticated %}
-            <li>
-              <form class="logout-link" action="{% url 'accounts:logout' %}" >
-              {% csrf_token %}
-              <button type="submit">logout</button>
-              </form>
-            </li>
-            <li>
-              <a href="{% url 'panel:panel' %}">MyPanel</a>
-            </li>
-          {% else %}
-            <li>
-              <a href="{% url 'accounts:login' %}">Login</a>
-            </li>
-            <li>
-              <a href="{% url 'accounts:login' %}">SignUp</a>
-            </li>
-          {% endif %}
-        </ul>
-     </nav>
-  </header>
-  {% block content %}
-    <section class="Form my-4 mx-5">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-log-7 px-5 pt-7">
-            <h1 class="font-weight-bold py-3">Panel</h1>
-            <form>
+
+</head>
+{% block content  %}
+        <h1 class="font-weight-bold py-3">Panel</h1>
+            <form class = "site-form">
               <div class="form-row">
-                <div class="col-log-7">
-                  <p>change rooms tempreture:</p>
-                  <input type="number" placeholder="degree">
-                  <button type="button" class="btn1">Submit</button>
+                <div class="col-log-7 px-5 pt-7">
+                  <p>Rooms tempreture:</p>
+                  <input class="form-input" type="number" placeholder="degree">
                 </div>
               </div>
               <div class="form-row">
-                <div class="col-log-7">
-                  <p class="mt-2 mb--5">Turn light ON/OFF:</p>
-                  <button type="button" class="btn1 " id="btn2">ON</button>
+                <div class="col-log-7 px-5 pt-8 mt-3">
+                  <p>Turn light ON/OFF:</p>
+                  <label class="switch">
+                     <input type="checkbox">
+                     <span class="slider round"></span>
+                  </label>
                 </div>
               </div>
               <div class="form-row">
-                <div class="col-log-7">
-                  <p class="mt-2 mb--5">Turn sth ON/OFF:</p>
-                  <button type="button" class="btn1 mb-3" id="btn3">ON</button>
+                <div class="col-log-7 px-5 pt-7">
+                  <p>Turn Electricity ON/OFF:</p>
+                  <label class="switch">
+                    <input type="checkbox" action="{% url 'panel:light' %}" method = "POST">
+                    <span class="slider round"></span>
+                  </label>
+                 </div>
+              </div>
+              <div class="form-row">
+                <div class="col-log-7 px-5 pt-7">
+                  <p>Auto/Manual:</p>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
                  </div>
               </div>
             </form>
-            <script>
-            var  btn2= document.getElementById("btn2");
-            btn2.onclick = function() {
-                btn2.innerHTML = "OFF";
-            };
-            var  btn3= document.getElementById("btn3");
-            btn3.onclick = function() {
-                btn3.innerHTML = "OFF";
-            }     
-            btn3.onclick = function() {
-                btn3.innerHTML = "OFF";  
-              }
-           </script>
-           </div>
-         </div>
-        </div>
-   </section>
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-{% endblock  %}
+{% endblock %}
 </html>

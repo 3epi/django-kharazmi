@@ -6,3 +6,6 @@ from django.contrib.auth.decorators import login_required
 def panel_views(request):
 
     return render(request, 'panel/panel.html')
+def light_views(request):
+
+    return
