@@ -1,5 +1,7 @@
 {% extends 'base.html' %} 
 
+{% load i18n %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,29 +15,46 @@
     <title>Panel</title>
 
 </head>
+<script> 
+function mybtn() {
+  var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.open("GET","{% url 'panel:light' %}", true);
+  xhttp.send();
+};
+</script>
 {% block content  %}
+        
+        
+        
         <h1 class="font-weight-bold py-3">Panel</h1>
             <form class = "site-form">
               <div class="form-row">
                 <div class="col-log-7 px-5 pt-7">
                   <p>Rooms tempreture:</p>
-                  <input class="form-input" type="number" placeholder="degree">
+                  <input type="number" placeholder="degree">
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-log-7 px-5 pt-8 mt-3">
                   <p>Turn light ON/OFF:</p>
                   <label class="switch">
-                     <input type="checkbox">
+                     <input type="checkbox" id=light onkeyup=mybtn() >
                      <span class="slider round"></span>
-                  </label>
+                 </label>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-log-7 px-5 pt-7">
                   <p>Turn Electricity ON/OFF:</p>
                   <label class="switch">
-                    <input type="checkbox" action="{% url 'panel:light' %}" method = "POST">
+                    <input type="checkbox" onkeyup=mybtn2()>
                     <span class="slider round"></span>
                   </label>
                  </div>
@@ -44,11 +63,15 @@
                 <div class="col-log-7 px-5 pt-7">
                   <p>Auto/Manual:</p>
                   <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" onkeyup=mybtn3() >
                     <span class="slider round"></span>
                   </label>
                  </div>
               </div>
+            </form>
+            <form action="{% url 'panel:lights' %}" method='GET'>
+            {% csrf_token %}
+            <button class="btn" type='submit' onclick = mybtn() > sort me</button>
             </form>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -112,6 +112,10 @@ a.highlight {
     margin: 10px 0;
 }
 
+.btn {
+    border-radius: 100%;
+}
+
 .switch {
     margin-top: 5px;
     position: relative;
