@@ -13,7 +13,7 @@ def light_views(request):
         device = Device.objects.get(id=1)
         device.status = not device.status
         device.save()
-        return redirect(request , 'panel/panel.html')
+        return HttpResponse()
 def electricity_views(request):
         print ("finally worked")
         Device.objects.all()
