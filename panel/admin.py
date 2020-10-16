@@ -4,5 +4,5 @@ from .models import Device
 
 class Deviceadmin(admin.ModelAdmin):
     model = Device
-    list_display = ['status' ,'status2','status3','id', ]
+    list_display = ['name', 'light_status' ,'electricity_status','auto_manual_status','id', ]
 admin.site.register(models.Device , Deviceadmin)

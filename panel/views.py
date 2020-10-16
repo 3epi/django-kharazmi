@@ -11,26 +11,20 @@ def panel_views(request):
 
 
 def light_views(request):
-    print("finally worked")
-    Device.objects.all()
     device = Device.objects.get(id=1)
-    device.status = not device.status
+    device.light_status = not device.light_status
     device.save()
     return HttpResponse()
 
 def electricity_views(request):
-    print("finally worked")
-    Device.objects.all()
     device = Device.objects.get(id=1)
-    device.status2 = not device.status
+    device.electricity_status = not device.electricity_status
     device.save()
     return HttpResponse()
 
 
 def manualorauto_views(request):
-    print("finally worked")
-    Device.objects.all()
     device = Device.objects.get(id=1)
-    device.status3 = not device.status
+    device.auto_manual_status = not device.auto_manual_status
     device.save()
     return redirect()
