@@ -27,4 +27,4 @@ def manualorauto_views(request):
     device = Device.objects.get(id=1)
     device.auto_manual_status = not device.auto_manual_status
     device.save()
-    return redirect()
+    return HttpResponse()

@@ -58,6 +58,7 @@ nav button {
     margin-top: 60px;
     border: 1px solid #00dba0;
     padding: 20px;
+    margin-bottom: 60px;
 }
 
 .site-form input,
@@ -110,10 +111,6 @@ a.highlight {
     background: #fff;
     border-radius: 4px;
     margin: 10px 0;
-}
-
-.btn {
-    border-radius: 100%;
 }
 
 .switch {
