@@ -18,7 +18,6 @@ def light_views(request):
     device.save()
     return HttpResponse()
 
-
 def electricity_views(request):
     print("finally worked")
     Device.objects.all()
