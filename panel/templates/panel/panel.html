@@ -25,7 +25,7 @@
   <div class="form-row">
     <div class="col-log-7 px-5 pt-7">
       <p>Rooms tempreture:</p>
-      <input type="number" placeholder="degree">
+      <input type="number" placeholder="degree"> <button type="submit" onclick=update_degree-update_degree_status() text="submit" >
     </div>
   </div>
   <div class="form-row">
@@ -89,7 +89,7 @@
       xhttp.open("GET", "electricity", true);
       xhttp.send();
     };
-        function update_manualorauto_status() {
+      function update_manualorauto_status() {
 
       if (window.XMLHttpRequest) {
         // code for modern browsers
