@@ -21,42 +21,54 @@
 {% block content  %}
 
 <h1 class="font-weight-bold py-3">Panel</h1>
-<form class="site-form">
-  <div class="form-row">
-    <div class="col-log-7 px-5 pt-7">
-      <p>Rooms tempreture:</p>
-      <input type="number" placeholder="degree"> <button type="submit" onclick=update_degree-update_degree_status() text="submit" >
-    </div>
+<div class="site-form" >
+  <div id="form">
+    <p>Rooms tempreture:</p>
+    <input  id = "degree_input" type="number" placeholder="degree" value="degreevalue">
+    <button class="btn" type="submit" onclick=degree_update()>submit degree</button>
   </div>
   <div class="form-row">
-    <div class="col-log-7 px-5 pt-8 mt-3">
-      <p>Turn light ON/OFF:</p>
-      <label class="switch">
-        <input type="checkbox" id="light" onclick="update_light_status()">
-        <span class="slider round"></span>
-      </label>
+      <div class="col-log-7 px-5 pt-8 mt-3">
+        <p>Turn light ON/OFF:</p>
+        <label class="switch">
+          <input type="checkbox" id="light" onclick=update_light_status()>
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-log-7 px-5 pt-7">
-      <p>Turn Electricity ON/OFF:</p>
-      <label class="switch">
-        <input type="checkbox" onclick=update_electricity_status()>
-        <span class="slider round"></span>
-      </label>
+    <div class="form-row">
+      <div class="col-log-7 px-5 pt-7">
+        <p>Turn Electricity ON/OFF:</p>
+        <label class="switch">
+          <input type="checkbox" onclick=update_electricity_status()>
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-log-7 px-5 pt-7">
-      <p>Auto/Manual:</p>
-      <label class="switch">
-        <input type="checkbox" onclick=update_manualorauto_status()>
-        <span class="slider round"></span>
-      </label>
+    <div class="form-row">
+      <div class="col-log-7 px-5 pt-7">
+        <p>Auto/Manual:</p>
+        <label class="switch">
+          <input type="checkbox" onclick=update_manualorauto_status()>
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
+    {% if status is True %}
+    <div class="container">
+      <div class="led-box">
+        <div class="led-green"></div>
+        <p>Gas status :</p>
+      </div>
+    {% elif status is False %}
+      <div class="led-box">
+        <div class="led-red"></div>
+        <p>Gas status :</p>
+      </div>
+    </div>
+    {% endif %}
   </div>
-</form>
-
+</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -89,7 +101,7 @@
       xhttp.open("GET", "electricity", true);
       xhttp.send();
     };
-      function update_manualorauto_status() {
+    function update_manualorauto_status() {
 
       if (window.XMLHttpRequest) {
         // code for modern browsers
@@ -101,7 +113,22 @@
       xhttp.open("GET", "manualorauto", true);
       xhttp.send();
     };
+
+    function degree_update(){
+    var http = new XMLHttpRequest();
+    var url = 'panel/light';
+    var params = 'degree='+docoument.getElementById('degree_input').value;
+    http.open('POST', url, true);
+
+
+
+    http.onreadystatechange = function() {//Call a function when the state changes.
+        if(http.readyState == 4 && http.status == 200) {
+            alert(http.responseText);
+        }
+    }
+    http.send(params);
+    };
   </script>
 {% endblock %}
-
 </html>
