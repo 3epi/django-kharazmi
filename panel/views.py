@@ -1,4 +1,6 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Device
 from django.views.decorators.csrf import csrf_exempt
@@ -44,5 +46,18 @@ def manualorauto_views(request):
 
 def gas_views(request):
     device = Device.objects.get(id=1) 
-    status = True
+    status = device.gas_status
+    if status == True :  
+        print(status)
+        status = { True                                                                                                                                                                                                                                                                                                                                                                                                                }
+    elif status == False : 
+        device.window_status = not device.window_status
+        print(status)
+        status = { False }
+    device.save()
     return render(request,'panel/panel.html',{'status':status})
+def window_views (request): 
+    device = Device.objects.get(id=1)
+    device.window_status = not device.window_status
+    device.save()
+    return HttpResponse()

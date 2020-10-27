@@ -19,7 +19,7 @@
 </head>
 
 {% block content  %}
-
+<body onload=pagerefresh()>
 <h1 class="font-weight-bold py-3">Panel</h1>
 <div class="site-form" >
   <div id="form">
@@ -54,6 +54,7 @@
         </label>
       </div>
     </div>
+    <p>{{status}}</p>
     {% if status is True %}
     <div class="container">
       <div class="led-box">
@@ -67,7 +68,15 @@
       </div>
     </div>
     {% endif %}
-  </div>
+  <div class="form-row">
+      <div class="col-log-7 px-5 pt-7">
+        <p>Open/Close window</p>
+        <label class="switch">
+          <input type="checkbox" onclick=update_window_status()>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -76,7 +85,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
   integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script>
-  
+        var timer; 
+            function pagerefresh() { 
+            timer = setInterval(function() {  
+               gas();  
+            }, 5000); 
+        }   
     function update_light_status() {
 
       if (window.XMLHttpRequest) {
@@ -89,7 +103,19 @@
       xhttp.open("GET", "light", true);
       xhttp.send();
     };
-      function update_electricity_status() {
+    function update_window_status() {
+
+      if (window.XMLHttpRequest) {
+        // code for modern browsers
+        xhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhttp.open("GET", "window", true);
+      xhttp.send();
+    };
+    function update_electricity_status() {
 
       if (window.XMLHttpRequest) {
         // code for modern browsers
@@ -120,8 +146,6 @@
     var params = 'degree='+docoument.getElementById('degree_input').value;
     http.open('POST', url, true);
 
-
-
     http.onreadystatechange = function() {//Call a function when the state changes.
         if(http.readyState == 4 && http.status == 200) {
             alert(http.responseText);
@@ -129,6 +153,19 @@
     }
     http.send(params);
     };
+    function gas() {
+
+      if (window.XMLHttpRequest) {
+        // code for modern browsers
+        xhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhttp.open("GET", "gas", true);
+      xhttp.send();
+    };
   </script>
+</body>
 {% endblock %}
 </html>

@@ -7,4 +7,5 @@ class Device(models.Model):
     light_status = models.BooleanField(default=True)
     electricity_status = models.BooleanField(default=True)
     auto_manual_status = models.BooleanField(default=True)
+    window_status =models.BooleanField(default=True)
     gas_status=models.BooleanField(default=True)
