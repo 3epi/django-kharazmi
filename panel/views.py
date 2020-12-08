@@ -1,9 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import render, HttpResponse, redirect 
-from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Device
 from django.views.decorators.csrf import csrf_exempt
+import requests
 
 # Create your views here.
 
@@ -24,12 +26,43 @@ def degree_views(request):
     device.save()
     return HttpResponse()
 
-def light_views(request):
-    device = Device.objects.get(id=1)
-    device.light_status = not device.light_status
-    device.save()
-    return HttpResponse()
-    
+def light1_views(request):
+    response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
+    result = response.json()
+    if result[1]["state"] == 'True' : 
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=False')
+    elif result[1]["state"] == 'False' :
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=True')
+    print (result)
+    return HttpResponse(response)
+
+def light2_views(request):
+    response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
+    result = response.json()
+    if result[2]["state"] == 'true' : 
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=2&state=false')
+    elif result[2]["state"] == 'false' :
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=2&state=true')
+    return HttpResponse(response)
+
+def light3_views(request):
+    response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
+    result = response.json()
+    if result[3]["state"] == 'true' : 
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=3&state=false')
+    elif result[3]["state"] == 'false' :
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=3&state=true')
+    return HttpResponse(response)
+
+def light4_views(request):
+    response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
+    result = response.json()
+    if result[4]["state"] == 'true' : 
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=4&state=false')
+    elif result[4]["state"] == 'false' :
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=4&state=true')
+    return HttpResponse(response)
+
 
 def electricity_views(request):
     device = Device.objects.get(id=1)
@@ -55,7 +88,8 @@ def gas_views(request):
         print(status)
         status = { False }
     device.save()
-    return render(request,'panel/panel.html',{'status':status})
+    #return render(request,'panel/panel.html',{'status':status})
+    return JsonResponse({'status':'True'})
 def window_views (request): 
     device = Device.objects.get(id=1)
     device.window_status = not device.window_status

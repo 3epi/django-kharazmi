@@ -27,15 +27,41 @@
     <input  id = "degree_input" type="number" placeholder="degree" value="degreevalue">
     <button class="btn" type="submit" onclick=degree_update()>submit degree</button>
   </div>
-  <div class="form-row">
+  <div class = "relative">
       <div class="col-log-7 px-5 pt-8 mt-3">
-        <p>Turn light ON/OFF:</p>
+        <p>light1 :</p>
         <label class="switch">
-          <input type="checkbox" id="light" onclick=update_light_status()>
+          <input type="checkbox" id="light" onclick=update_light1_status()>
           <span class="slider round"></span>
         </label>
       </div>
     </div>
+      <div class = "relative">
+      <div class="col-log-7 px-5 pt-8 mt-3">
+        <p>light2 :</p>
+        <label class="switch">
+          <input type="checkbox" id="light" onclick=update_light2_status()>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+      <div class = "relative">
+      <div class="col-log-7 px-5 pt-8 mt-3">
+        <p>light3 :</p>
+        <label class="switch">
+          <input type="checkbox" id="light" onclick=update_light3_status()>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>  
+      <div class="col-log-7 px-5 pt-8 mt-3">
+        <p>light4 :</p>
+        <label class="switch">
+          <input type="checkbox" id="light" onclick=update_light4_status()>
+          <span class="slider round"></span>
+        </label>
+      </div>  
+    
     <div class="form-row">
       <div class="col-log-7 px-5 pt-7">
         <p>Turn Electricity ON/OFF:</p>
@@ -54,7 +80,7 @@
         </label>
       </div>
     </div>
-    <p>{{status}}</p>
+    <p id="statusID">{{status}}</p>
     {% if status is True %}
     <div class="container">
       <div class="led-box">
@@ -85,13 +111,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
   integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script>
-        var timer; 
-            function pagerefresh() { 
-            timer = setInterval(function() {  
-               gas();  
-            }, 5000); 
-        }   
-    function update_light_status() {
+    function pagerefresh() { 
+        setInterval(function() {  
+          gas();  
+        }, 5000); 
+    };
+    function update_light1_status() {
 
       if (window.XMLHttpRequest) {
         // code for modern browsers
@@ -100,9 +125,46 @@
         // code for IE6, IE5
         xhttp = new ActiveXObject("Microsoft.XMLHTTP");
       }
-      xhttp.open("GET", "light", true);
+      xhttp.open("GET", "light1", true);
       xhttp.send();
     };
+    function update_light2_status() {
+
+      if (window.XMLHttpRequest) {
+        // code for modern browsers
+        xhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhttp.open("GET", "light2", true);
+      xhttp.send();
+    };
+        function update_light3_status() {
+
+      if (window.XMLHttpRequest) {
+        // code for modern browsers
+        xhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhttp.open("GET", "light3", true);
+      xhttp.send();
+    };
+        function update_light4_status() {
+
+      if (window.XMLHttpRequest) {
+        // code for modern browsers
+        xhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhttp.open("GET", "light4", true);
+      xhttp.send();
+    };
+
     function update_window_status() {
 
       if (window.XMLHttpRequest) {
@@ -154,16 +216,16 @@
     http.send(params);
     };
     function gas() {
-
-      if (window.XMLHttpRequest) {
-        // code for modern browsers
-        xhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      var xmlhttp 
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          var response = (xmlHttpRequest.responseText).find('status').text()
+          console.log(response);
+        }
       }
-      xhttp.open("GET", "gas", true);
-      xhttp.send();
+      xmlhttp.open("GET", "gas", true);
+      xmlhttp.send();
     };
   </script>
 </body>

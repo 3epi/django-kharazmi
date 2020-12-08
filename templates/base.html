@@ -32,7 +32,7 @@
            <li> 
               <form class="site-logout" action="{% url 'accounts:logout' %}" method ="POST" >      
         {% csrf_token %}
-              <button type="submit"><span class="glyphicon glyphicon-log-out">logout</span></button>            
+              <button type="submit" class="logoutbutton"><span class="glyphicon glyphicon-log-out">logout</span></button>            
               </form>
             </a>
           </li>
@@ -49,9 +49,10 @@
     </div>
   </div>
 </nav>
+
 <div class="wrapper"> 
     {% block content %}
-    
+
     {% endblock %}
 </div>
 </body>
