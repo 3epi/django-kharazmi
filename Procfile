@@ -1,1 +1,1 @@
-web:gunicorn kharazmi.wsgi
+web: gunicorn kharazmi.wsgi
