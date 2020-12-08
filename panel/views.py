@@ -90,8 +90,3 @@ def gas_views(request):
     device.save()
     #return render(request,'panel/panel.html',{'status':status})
     return JsonResponse({'status':'True'})
-def window_views (request): 
-    device = Device.objects.get(id=1)
-    device.window_status = not device.window_status
-    device.save()
-    return HttpResponse()

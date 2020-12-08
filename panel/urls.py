@@ -12,5 +12,4 @@ urlpatterns = [
     path('manualorauto', views.manualorauto_views , name = 'manualorauto'),
     path('degree',views.degree_views,name='degree'),
     path('gas',views.gas_views, name = 'gas'),
-    path('window',views.window_views, name = 'window'),
 ]
