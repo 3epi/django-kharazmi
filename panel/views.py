@@ -29,29 +29,29 @@ def degree_views(request):
 def light1_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
     result = response.json()
-    if result[1]["state"] == 'True' : 
-        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=False')
-    elif result[1]["state"] == 'False' :
-        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=True')
+    if result[1]["state"] == '0' : 
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=1')
+    elif result[1]["state"] == '1' :
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=0')
     print (result)
     return HttpResponse(response)
 
 def light2_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
     result = response.json()
-    if result[2]["state"] == 'true' : 
-        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=2&state=false')
-    elif result[2]["state"] == 'false' :
-        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=2&state=true')
+    if result[2]["state"] == '0' : 
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=2&state=1')
+    elif result[2]["state"] == '1' :
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=2&state=0')
     return HttpResponse(response)
 
 def light3_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
     result = response.json()
-    if result[3]["state"] == 'true' : 
-        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=3&state=false')
-    elif result[3]["state"] == 'false' :
-        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=3&state=true')
+    if result[3]["state"] == '0' : 
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=3&state=1')
+    elif result[3]["state"] == '1' :
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=3&state=0')
     return HttpResponse(response)
 
 def light4_views(request):
