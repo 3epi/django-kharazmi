@@ -74,11 +74,6 @@ def electricity_views(request):
     return HttpResponse(response)
 
 
-def manualorauto_views(request):
-    device = Device.objects.get(id=1)
-    device.auto_manual_status = not device.auto_manual_status
-    device.save()
-    return HttpResponse()
 
 def gas_views(request):
     device = Device.objects.get(id=1) 
