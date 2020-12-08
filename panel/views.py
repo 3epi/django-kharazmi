@@ -29,37 +29,37 @@ def degree_views(request):
 def light1_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
     result = response.json()
-    if result[1]["state"] == '0' : 
+    if result[0]["state"] == '0' : 
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=1')
-    elif result[1]["state"] == '1' :
+    elif result[0]["state"] == '1' :
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=0')
     print (result)
-    return HttpResponse(response)
+    return HttpResponse()
 
 def light2_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
     result = response.json()
-    if result[2]["state"] == '0' : 
+    if result[1]["state"] == '0' : 
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=2&state=1')
-    elif result[2]["state"] == '1' :
+    elif result[1]["state"] == '1' :
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=2&state=0')
     return HttpResponse(response)
 
 def light3_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
     result = response.json()
-    if result[3]["state"] == '0' : 
+    if result[2]["state"] == '0' : 
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=3&state=1')
-    elif result[3]["state"] == '1' :
+    elif result[2]["state"] == '1' :
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=3&state=0')
     return HttpResponse(response)
 
 def light4_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
     result = response.json()
-    if result[4]["state"] == '0' : 
+    if result[3]["state"] == '0' : 
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=4&state=1')
-    elif result[4]["state"] == '1' :
+    elif result[3]["state"] == '1' :
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=4&state=0')
     return HttpResponse(response)
 
