@@ -34,7 +34,7 @@ def light1_views(request):
     elif result[0]["state"] == '1' :
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=0')
     print (result)
-    return HttpResponse()
+    return HttpResponse(response)
 
 def light2_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
