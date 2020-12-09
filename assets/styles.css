@@ -376,14 +376,12 @@ a.homebutton:hover {
 
 .temperature {
     font-family: 'Digital-7', arial;
-    src: font-url(https://allfont.net/allfont.css?fonts=digital-7);
     font-size: larger;
     text-align: center;
 }
 
 .humidity {
     font-family: 'Digital-7', arial;
-    src: font-url(https://allfont.net/allfont.css?fonts=digital-7);
     font-size: larger;
     text-align: center;
 }
