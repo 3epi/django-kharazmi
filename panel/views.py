@@ -15,16 +15,16 @@ def panel_views(request):
 
     return render(request, 'panel/panel.html')
 
-@csrf_exempt
+
 def degree_views(request):
-    form=request.POST.get(params)
-    print(form)
-    device = Device.objects.get(id=1)
-    if form.is_valid() : 
-        form = form.cleaned_data()
-        Device.degree = form
-    device.save()
-    return HttpResponse()
+    response = requests.get('http://kharazmi23.herokuapp.com/api/status/temp')
+    result = response.json()
+    print (result)
+    data = {
+        'result'; result,
+    }
+    return JsonResponse(data)
+
 
 def light1_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')

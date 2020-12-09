@@ -1,3 +1,4 @@
+@import url(https://allfont.net/allfont.css?fonts=digital-7);
 body {
     background-color: #0f121f;
     background-attachment: fixed;
@@ -371,4 +372,16 @@ a.homebutton:hover {
     float: left;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.temperature {
+    font-family: 'Digital-7', arial;
+    font-size: larger;
+    text-align: center;
+}
+
+.humidity {
+    font-family: 'Digital-7', arial;
+    font-size: larger;
+    text-align: center;
 }
