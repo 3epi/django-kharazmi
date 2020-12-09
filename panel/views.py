@@ -21,7 +21,7 @@ def degree_views(request):
     result = response.json()
     print (result)
     data = {
-        'result'; result,
+        'result': result,
     }
     return JsonResponse(data)
 
