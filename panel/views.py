@@ -19,12 +19,14 @@ def panel_views(request):
 def degree_views(request):
     response = requests.get('http://kharazmi23.herokuapp.com/api/status/temp')
     result = response.json()
-    print (result)
-    data = {
-        'result': result,
-    }
-    return JsonResponse(data)
+    temp = result["temp"]
+    return JsonResponse(temp,safe=False)
 
+def humidity_views(request):
+    response = requests.get('http://kharazmi23.herokuapp.com/api/status/temp')
+    result = response.json()
+    humm = result["humm"]
+    return JsonResponse(humm,safe=False)
 
 def light1_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
@@ -84,13 +86,7 @@ def electricity_views(request):
 def gas_views(request):
     device = Device.objects.get(id=1) 
     status = device.gas_status
-    if status == True :  
-        print(status)
-        status = { True                                                                                                                                                                                                                                                                                                                                                                                                                }
-    elif status == False : 
-        device.window_status = not device.window_status
-        print(status)
-        status = { False }
-    device.save()
-    #return render(request,'panel/panel.html',{'status':status})
-    return JsonResponse({'status':'True'})
+    if status == True :
+        return JsonResponse(True, safe=False)
+    elif status == False :
+        return JsonResponse(False, safe=False)

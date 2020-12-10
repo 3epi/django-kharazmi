@@ -384,4 +384,5 @@ a.homebutton:hover {
     font-family: 'Digital-7', arial;
     font-size: larger;
     text-align: center;
+    position: relative;
 }

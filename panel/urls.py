@@ -10,5 +10,6 @@ urlpatterns = [
     path('light4', views.light4_views , name = 'light'),
     path('electricity', views.electricity_views , name = 'electricity'),
     path('degree',views.degree_views,name='degree'),
+    path('humidity',views.humidity_views,name='humidity'),
     path('gas',views.gas_views, name = 'gas'),
 ]
