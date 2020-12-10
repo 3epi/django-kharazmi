@@ -75,19 +75,11 @@
         </label>
       </div>
     </div>
-    {% if this.responseText == True %}
     <div class="container">
       <div class="led-box">
-        <div class="led-green"></div>
+        <div id="ledgreen"></div>
         <p>Gas status :</p>
       </div>
-    {% elif this.responseText == False %}
-      <div class="led-box">
-        <div class="led-red"></div>
-        <p>Gas status :</p>
-      </div>
-    </div>
-    {% endif %}
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -176,6 +168,7 @@
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("degreediv").innerHTML = this.responseText;
+        
       }
     };
       xhttp.open("GET", "degree", true);
@@ -198,11 +191,19 @@
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("gasdiv").innerHTML = this.responseText;
+      var x = this.responseText;
+      console.log(x)
+      if ( x == "false") {
+      var e =document.getElementById('ledgreen');
+      e.id = "ledred";
+      }else if  (x == "true"){
+      var z =document.getElementById('ledred');
+      z.id = "ledgreen";
+      }
       }
     };
-      xmlhttp.open("GET", "gas", true);
-      xmlhttp.send();
+      xhttp.open("GET", "gas", true);
+      xhttp.send();
     };
   </script>
 </body>

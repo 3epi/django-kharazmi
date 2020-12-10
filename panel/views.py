@@ -89,4 +89,4 @@ def gas_views(request):
     if status == True :
         return JsonResponse(True, safe=False)
     elif status == False :
-        return JsonResponse(False, safe=False)
+       return JsonResponse(False, safe=False)
