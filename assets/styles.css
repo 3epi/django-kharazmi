@@ -386,3 +386,7 @@ a.homebutton:hover {
     text-align: center;
     position: relative;
 }
+
+.hometext {
+    text-align: right;
+}
