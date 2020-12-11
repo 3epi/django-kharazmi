@@ -32,9 +32,9 @@ def light1_views(request):
     response = requests.get('https://kharazmi23.herokuapp.com/api/status/lamps')
     result = response.json()
     if result[0]["state"] == '1' : 
-        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=1')
-    elif result[0]["state"] == '0' :
         requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=0')
+    elif result[0]["state"] == '0' :
+        requests.get('https://kharazmi23.herokuapp.com/api/dev?id=1&state=1')
     print (result)
     return HttpResponse(response)
 
@@ -84,9 +84,9 @@ def electricity_views(request):
 
 
 def gas_views(request):
-    device = Device.objects.get(id=1) 
-    status = device.gas_status
-    if status == True :
-        return JsonResponse(True, safe=False)
-    elif status == False :
-       return JsonResponse(False, safe=False)
+    response = requests.get('https://kharazmi23.herokuapp.com/api/status/gas')
+    result = response.json()
+    if result["state"] == 1 :
+        return JsonResponse(True,safe =False)
+    elif result["state"] == 0 :
+        return JsonResponse(False,safe =False)
